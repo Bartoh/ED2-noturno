@@ -31,10 +31,29 @@ Node_t* insert(Node_t *root, int key){
 
 void printPre(Node_t *root){
 	Node_t *r = root;
+	if(r != NULL){
+		printf("%d ", r->number);
+		if(r->left != NULL) printPre(r->left);
+		if(r->right != NULL) printPre(r->right);
+	}else{printf("Empty tree!\n");}
+}
 
-	if(r != NULL) printf("%d\n", r->number);
-	if(r->left != NULL) printPre(r->left);
-	if(r->right != NULL) printPre(r->right);
+void printIn(Node_t *root){
+	Node_t *r = root;
+	if(r != NULL){
+		if(r->left != NULL) printIn(r->left);
+		printf("%d ", r->number);
+		if(r->right != NULL) printIn(r->right);
+	}else{printf("Empty tree!\n");}
+}
+
+void printPos(Node_t *root){
+	Node_t *r = root;
+	if(r != NULL){
+		if(r->left != NULL) printPos(r->left);
+		if(r->right != NULL) printPos(r->right);
+		printf("%d ", r->number);
+	}else{printf("Empty tree!\n");}
 }
 
 void search(Node_t *root, int key){
@@ -113,8 +132,10 @@ int menu(){
 	printf("|-0 Exit\n");
 	printf("|-1 Insert\n");
 	printf("|-2 Search\n");
-	printf("|-3 Print tree\n");
-	printf("|-4 Remove\n");
+	printf("|-3 Print PreOrder\n");
+	printf("|-4 Print InOrder\n");
+	printf("|-5 Print PosOrder\n");
+	printf("|-6 Remove\n");
 	printf("|-----------------|\n");
 	scanf("%d", &op);
 	return op;

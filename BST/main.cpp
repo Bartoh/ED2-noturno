@@ -19,8 +19,15 @@ int main(void){
 					search(tree, key);
 					break;
 			case 3: printPre(tree);
+					printf("\n");
 					break;
-			case 4: printf("Chave para remover: ");
+			case 4: printIn(tree);
+					printf("\n");
+					break;
+			case 5: printPos(tree);
+					printf("\n");
+					break;
+			case 6: printf("Chave para remover: ");
 					scanf("%d", &key);
 					tree = remove(tree, key);
 					break;
