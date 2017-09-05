@@ -16,7 +16,7 @@ int main(void){
 					break;
 			case 2: printf("Chave para busca: ");
 					scanf("%d", &key);
-					search(tree, key);
+					search(tree, tree, key);
 					break;
 			case 3: printPre(tree);
 					printf("\n");

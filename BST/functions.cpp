@@ -56,19 +56,29 @@ void printPos(Node_t *root){
 	}else{printf("Empty tree!\n");}
 }
 
-void search(Node_t *root, int key){
-	Node_t *r = root;
-
+void search(Node_t *root, Node_t *run, int key){
+	Node_t *r = run;
+	Node_t *aux = root;
 	if(r == NULL) printf("Key not found!\n");
-	else if(r->number == key) printf("The key was found!\n");
-	else if(r->number < key) search(r->right, key);
-	else if(r->number > key) search(r->left, key);
+	else if(r->number == key){
+		printf("The key was found!\n");
+		while(aux != r){
+			printf("%d ", aux->number);
+			if(r->number > aux->number) aux = aux->right;
+			else if(r->number < aux->number) aux = aux->left;
+		}
+		printf("( %d )\n", aux->number);
+	}
+	else if(r->number < key) search(root, r->right, key);
+	else if(r->number > key) search(root, r->left, key);
 }
 
 void destroyTree(Node_t *root){
-	if(root->left != NULL) destroyTree(root->left);
-	if(root->right != NULL) destroyTree(root->right);
-	free(root);
+	if(root != NULL){
+		if(root->left != NULL) destroyTree(root->left);
+		if(root->right != NULL) destroyTree(root->right);
+		free(root);
+	}
 }
 
 Node_t* remove(Node_t *root, int key){
